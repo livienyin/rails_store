@@ -1,3 +1,6 @@
+
+
+
 <%= form_for(@review) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +13,7 @@
       </ul>
     </div>
   <% end %>
-
+ 
   <div class="field">
     <%= f.label :body %><br />
     <%= f.text_area :body %>
@@ -20,8 +23,23 @@
     <%= f.text_field :rating %>
   </div>
   <div class="field">
-    <%= f.label :product_id %><br />
-    <%= f.number_field :product_id %>
+   <%# f.label :product_id %>
+    <%# f.number_field :product_id %>
+    <% if !params[:product_id].nil? %>
+
+      <input type="hidden" name="review[product_id]" value="<%= params[:product_id] %>"/>
+    
+    <% else %>
+      <%= f.label :product_id %><br />
+
+    <select name='review[product_id]'>
+      <%= @products.each do |product| %>
+        <option value='<%=  product.id %>'>
+          <%= product.name %>
+        </option>
+      <% end %>
+    </select>
+   <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
+    @reviews = Review.where(:product_id => params[:id])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
@@ -25,7 +27,7 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
-
+    @id = params[:id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product }

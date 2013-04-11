@@ -25,6 +25,17 @@ class ReviewsController < ApplicationController
   # GET /reviews/new.json
   def new
     @review = Review.new
+    @product_id = params[:product_id]
+
+    @products = Product.all
+    if !@product_id.nil?
+      @product_name = @products.find{|p| p.id == @product_id.to_i}.name
+    end
+
+
+
+
+    #@product.id = params[:id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,13 +46,15 @@ class ReviewsController < ApplicationController
   # GET /reviews/1/edit
   def edit
     @review = Review.find(params[:id])
+    @products = Product.all
+
   end
 
   # POST /reviews
   # POST /reviews.json
   def create
     @review = Review.new(params[:review])
-
+    
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
