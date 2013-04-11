@@ -14,10 +14,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
-    @review = Review.new
     @product_id = params[:id]
-    @reviews = Review.where(:product_id => params[:id])
+    @product = Product.find(@product_id)
+    @review = Review.new
+    @reviews = Review.where(:product_id => @product_id)
     @products = Product.all
     # if !@product_id.nil?
     #   @product_name = @products.find{|p| p.id == @product_id.to_i}.name

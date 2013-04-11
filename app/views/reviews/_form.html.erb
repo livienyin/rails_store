@@ -20,11 +20,11 @@
     <%= f.label :rating %><br />
     <%= f.text_field :rating %>
   </div>
+
   <div class="field">
    <%# f.label :product_id %>
     <%# f.number_field :product_id %>
     <% if !@product_id.nil? %>
-
       <input type="hidden" name="review[product_id]" value="<%= @product_id %>"/>
     
     <% else %>
@@ -37,7 +37,9 @@
         </option>
       <% end %>
     </select>
+    
    <% end %>
+
   </div>
   <div class="actions">
     <%= f.submit %>
