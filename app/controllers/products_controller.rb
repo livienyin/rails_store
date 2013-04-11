@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @product = Product.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,8 +15,13 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-
+    @review = Review.new
+    @product_id = params[:id]
     @reviews = Review.where(:product_id => params[:id])
+    @products = Product.all
+    # if !@product_id.nil?
+    #   @product_name = @products.find{|p| p.id == @product_id.to_i}.name
+    # end
 
     respond_to do |format|
       format.html # show.html.erb

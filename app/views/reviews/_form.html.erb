@@ -1,6 +1,4 @@
 
-
-
 <%= form_for(@review) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
@@ -25,9 +23,9 @@
   <div class="field">
    <%# f.label :product_id %>
     <%# f.number_field :product_id %>
-    <% if !params[:product_id].nil? %>
+    <% if !@product_id.nil? %>
 
-      <input type="hidden" name="review[product_id]" value="<%= params[:product_id] %>"/>
+      <input type="hidden" name="review[product_id]" value="<%= @product_id %>"/>
     
     <% else %>
       <%= f.label :product_id %><br />

@@ -32,11 +32,6 @@ class ReviewsController < ApplicationController
       @product_name = @products.find{|p| p.id == @product_id.to_i}.name
     end
 
-
-
-
-    #@product.id = params[:id]
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @review }
