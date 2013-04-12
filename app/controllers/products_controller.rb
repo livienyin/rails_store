@@ -1,9 +1,16 @@
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
+
+  before_filter :load_products_in_cart, :only => [:index, :show]
+  def load_products_in_cart
+    @products_in_cart = Product.where(:in_cart => 't')
+  end
+
   def index
     @products = Product.all
     @product = Product.new
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -74,6 +81,17 @@ class ProductsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def add_to_cart
+    @product = Product.find(params[:id])
+    @product[:in_cart] = 't'
+
+    respond_to do |format|
+      @product.update_attributes(params[:product])
+      format.html { redirect_to products_url, notice: 'Product was successfully added to cart.' }
+      format.json { head :no_content }
     end
   end
 
