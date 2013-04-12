@@ -1,6 +1,8 @@
 RailsStore::Application.routes.draw do
   resources :reviews
-
+  # get '/reviews', :to => 'reviews#index', :as => 'review'
+  # get '/reviews/new(.:format)', :controller => 'reviews', :action => 'new', :as => 'new_review'
+  # post '/reviews/(.:format)', :controller => 'reviews', :action => 'create'
 
   resources :products
   
@@ -8,6 +10,8 @@ RailsStore::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
+  # root :to => 'products#index'
+
   post '/products/:id' => 'products#add_to_cart'
   post '/products/:id' => 'products#remove_from_cart', :as => 'remove_product'
   # Keep in mind you can assign values other than :controller and :action

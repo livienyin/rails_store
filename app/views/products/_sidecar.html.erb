@@ -1,0 +1,14 @@
+<div id = "shopping_cart">
+<h2>Your Cart</h2>
+
+<ul>
+<% @products_in_cart.each do |product| %>
+  <li><%= product.name %> <%= product.price %>
+  	<%#= link_to 'Remove', @product, method: :post %></li>
+<% end %>
+  <b><li>Total <%= price_total %></li></b>
+</ul>
+</div>
+
+
+
