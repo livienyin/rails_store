@@ -20,6 +20,19 @@ class ReviewsController < ApplicationController
       format.json { render json: @review }
     end
   end
+  
+
+# Class example to refactor @products in def new and edit
+# before_filter :load_products, :only => [:new, :edit]
+# def load_products
+#   @products = Product.all
+# end
+
+# before_filter :get_review, :except => [:index, :new]
+# def get_review
+#   @review = Review.find(params[:id])
+# end
+
 
   # GET /reviews/new
   # GET /reviews/new.json

@@ -12,7 +12,15 @@
   <%= @product.price %>
 </p>
 
-<%= render 'form.html' %>
+<p>
+<% if @product.image_url.nil? %>
+  <%= image_tag "http://www.mountfanblade.com/style/no_pic.gif" %>
+<% else %>
+  <img src="<%= @product.image_url %>" >
+<% end %>
+</p>
+
+<%#= render 'form.html' %>
 <%= render 'reviews/form.html.erb' %>
 
 <ol>
@@ -22,5 +30,5 @@
 </ol>
 
 <!-- <a href = "/reviews/new/<%= @product.id %>">New Review</a> -->
-<%#= link_to 'Edit', edit_product_path(@product) %> 
+<%= link_to 'Edit', edit_product_path(@product) %> 
 
