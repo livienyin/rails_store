@@ -95,6 +95,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def remove_from_cart
+    @product = Product.find(params[:id])
+    @product[:in_cart] = 'f'
+
+    respond_to do |format|
+      @product.update_attributes(params[:product])
+      format.html { redirect_to products_url, notice: 'Product was successfully removed.' }
+      format.json { head :no_content }
+    end
+  end
+
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
