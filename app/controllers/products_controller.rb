@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
     @product.update_attributes({:in_cart => true})
 
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully added to cart.' }
+      format.html { redirect_to :back, notice: 'Product was successfully added to cart.' }
       format.json { head :no_content }
     end
   end
