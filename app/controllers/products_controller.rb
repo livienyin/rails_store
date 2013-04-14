@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @products_in_cart = Product.where(:in_cart => true)
   end
 
-  before_filter :find_product, :except => [:index, :create, :new]
+  before_filter :find_product, :except => [:index, :new, :create]
   def find_product
     @product = Product.find(params[:id])
   end
@@ -54,6 +54,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    @product = Product.new(params[:product])
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }

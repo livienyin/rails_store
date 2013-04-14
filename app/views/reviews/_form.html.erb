@@ -16,8 +16,9 @@
     <%= f.text_area :body %>
   </div>
   <div class="field">
-    <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
+    <%= f.select :rating, (0..5) %>
+    <%#= f.label :rating %>
+    <%#= f.text_field :rating %>
   </div>
 
   <div class="field">
