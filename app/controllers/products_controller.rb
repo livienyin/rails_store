@@ -7,6 +7,11 @@ class ProductsController < ApplicationController
     @products_in_cart = Product.where(:in_cart => true)
   end
 
+  before_filter :find_product, :except => [:index, :create, :new]
+  def find_product
+    @product = Product.find(params[:id])
+  end
+
   def index
     @products = Product.all
     @product = Product.new
@@ -21,14 +26,9 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product_id = params[:id]
-    @product = Product.find(@product_id)
     @review = Review.new
     @reviews = Review.where(:product_id => @product_id)
     @products = Product.all
-    # if !@product_id.nil?
-    #   @product_name = @products.find{|p| p.id == @product_id.to_i}.name
-    # end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -49,14 +49,11 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(params[:product])
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -71,8 +68,6 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.json
   def update
-    @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -85,27 +80,23 @@ class ProductsController < ApplicationController
   end
   
   def add_to_cart
-    @product = Product.find(params[:id])
-    @product[:in_cart] = true
+    @product.update_attributes({:in_cart => true})
 
-    # product.update_attributes({:in_cart => true})
+    #@product[:in_cart] = true
     # OR
     # @product.in_cart = true
     # @product.save
 
     respond_to do |format|
-      @product.update_attributes(params[:product])
       format.html { redirect_to products_url, notice: 'Product was successfully added to cart.' }
       format.json { head :no_content }
     end
   end
 
    def remove_from_cart
-     @product = Product.find(params[:id])
-     @product[:in_cart] = false
+     @product.update_attributes({:in_cart => false})
 
      respond_to do |format|
-       @product.update_attributes(params[:product])
        format.html { redirect_to products_url, notice: 'Product was successfully removed.' }
        format.json { head :no_content }
      end
@@ -114,7 +105,6 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
 
     respond_to do |format|

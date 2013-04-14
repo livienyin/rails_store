@@ -3,7 +3,7 @@
 <%= link_to 'Product Reviews', reviews_path %>
 
 <div id = "products_index">
-  
+
 <table>
   <tr>
     <th>Image</th>
@@ -18,7 +18,7 @@
     <td><img src="<%= product.image_url %>" height="50"></td>
     <td><%= product.name %></td>
     <td><%= product.price %></td>
-    <td><%= link_to 'Add to Cart', product, method: :post %></td> 
+    <td><%= link_to 'Add to Cart', product, method: :post %></td>
     <td><%= link_to 'Show', product %></td>
     <td><%= link_to 'Edit', edit_product_path(product) %></td>
     <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
