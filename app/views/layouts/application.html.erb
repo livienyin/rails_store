@@ -3,13 +3,19 @@
 <head>
   <title>RailsStore</title>
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Medula+One' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="container">
+  	<header>
+  	  <h1>Architecture for Dogs</h1>
+  	</header>
+    <div id="inner_container">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

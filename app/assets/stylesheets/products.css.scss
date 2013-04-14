@@ -2,8 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-img {
-  height: 50px;
+header {
+  padding: 7.2em 0 7.2em 0;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Medula One', cursive;
+  font-size: 800%;
 }
 
 ul {
@@ -15,12 +21,30 @@ textarea {
   height: 80px;
 }
 
-#products_index {
-  float: left;
-  border: red 1px solid;
+
+#container {
+  margin: 0 auto;
+  width: 1000px;
+  border-top: 5px solid #000;
 }
 
-#shopping_cart {
+#inner_container {
+}
+
+/*#shopping_cart {
   float: right;
   border: red 1px solid;
+}*/
+
+.index_product {
+  width: 320px;
+  margin: 0 20px 40px 0;
+  position: relative;
+  float: left;
+  display: block;
+  text-align: center;
+}
+
+.index_product:nth-child(3n + 2) {
+  margin-right: 0;
 }
