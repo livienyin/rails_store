@@ -22,19 +22,9 @@
   </div>
 
   <div class="field">
-    <% if !@product.id.nil? %>
-      <input type="hidden" name="review[product_id]" value="<%= @product.id %>"/>
-    
-    <% else %>
+    <% if @product_id %>
+      <input type="hidden" name="review[product_id]" value="<%= @product_id %>"/>
       <%= f.label :product_id %><br />
-
-    <select name='review[product_id]'>
-      <%= @products.each do |product| %>
-        <option value='<%=  product.id %>'>
-          <%= product.name %>
-        </option>
-      <% end %>
-    </select>
    <% end %>
 
   </div>
