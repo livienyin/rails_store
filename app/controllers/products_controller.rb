@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @review = Review.new
-    @reviews = Review.where(:product_id => @product_id)
+    @reviews = Review.where(:product_id => @product.id)
     @products = Product.all
 
     respond_to do |format|
@@ -81,11 +81,6 @@ class ProductsController < ApplicationController
   
   def add_to_cart
     @product.update_attributes({:in_cart => true})
-
-    #@product[:in_cart] = true
-    # OR
-    # @product.in_cart = true
-    # @product.save
 
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully added to cart.' }

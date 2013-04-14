@@ -1,8 +1,9 @@
 RailsStore::Application.routes.draw do
-  resources :reviews
-  # get '/reviews', :to => 'reviews#index', :as => 'review'
-  # get '/reviews/new(.:format)', :controller => 'reviews', :action => 'new', :as => 'new_review'
-  # post '/reviews/(.:format)', :controller => 'reviews', :action => 'create'
+
+  get '/reviews', :to => 'reviews#index', :as => 'reviews'
+  post '/reviews', :to => 'reviews#create' 
+  
+ 
 
   resources :products
   
@@ -58,7 +59,7 @@ RailsStore::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'products#index'
 
 
   # See how all your routes lay out with "rake routes"

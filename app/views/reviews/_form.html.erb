@@ -21,10 +21,8 @@
   </div>
 
   <div class="field">
-   <%# f.label :product_id %>
-    <%# f.number_field :product_id %>
-    <% if !@product_id.nil? %>
-      <input type="hidden" name="review[product_id]" value="<%= @product_id %>"/>
+    <% if !@product.id.nil? %>
+      <input type="hidden" name="review[product_id]" value="<%= @product.id %>"/>
     
     <% else %>
       <%= f.label :product_id %><br />
