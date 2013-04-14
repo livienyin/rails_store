@@ -1,4 +1,9 @@
 class ReviewsController < ApplicationController
+
+  before_filter :load_products, :only => [:new, :edit, :create]
+  def load_products
+    @products = Product.all
+  end
   # GET /reviews
   # GET /reviews.json
   def index
@@ -20,13 +25,8 @@ class ReviewsController < ApplicationController
       format.json { render json: @review }
     end
   end
-  
 
-# Class example to refactor @products in def new and edit
-# before_filter :load_products, :only => [:new, :edit]
-# def load_products
-#   @products = Product.all
-# end
+
 
 # before_filter :get_review, :except => [:index, :new]
 # def get_review
@@ -40,7 +40,6 @@ class ReviewsController < ApplicationController
     @review = Review.new
     @product_id = params[:product_id]
 
-    @products = Product.all
     if !@product_id.nil?
       @product_name = @products.find{|p| p.id == @product_id.to_i}.name
     end
@@ -54,8 +53,6 @@ class ReviewsController < ApplicationController
   # GET /reviews/1/edit
   def edit
     @review = Review.find(params[:id])
-    @products = Product.all
-
   end
 
   # POST /reviews

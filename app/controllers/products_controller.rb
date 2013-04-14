@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   before_filter :load_products_in_cart, :only => [:index, :show]
   def load_products_in_cart
-    @products_in_cart = Product.where(:in_cart => 't')
+    @products_in_cart = Product.where(:in_cart => true)
   end
 
   def index
@@ -86,9 +86,9 @@ class ProductsController < ApplicationController
   
   def add_to_cart
     @product = Product.find(params[:id])
-    @product[:in_cart] = 't'
+    @product[:in_cart] = true
 
-    # @product.update_attributes({:in_cart => true})
+    # product.update_attributes({:in_cart => true})
     # OR
     # @product.in_cart = true
     # @product.save
@@ -100,16 +100,16 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def remove_from_cart
-  #   @product = Product.find(params[:id])
-  #   @product[:in_cart] = 'f'
+   def remove_from_cart
+     @product = Product.find(params[:id])
+     @product[:in_cart] = false
 
-  #   respond_to do |format|
-  #     @product.update_attributes(params[:product])
-  #     format.html { redirect_to products_url, notice: 'Product was successfully removed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+     respond_to do |format|
+       @product.update_attributes(params[:product])
+       format.html { redirect_to products_url, notice: 'Product was successfully removed.' }
+       format.json { head :no_content }
+     end
+   end
 
   # DELETE /products/1
   # DELETE /products/1.json

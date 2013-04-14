@@ -4,7 +4,8 @@
 <ul>
 <% @products_in_cart.each do |product| %>
   <li><%= product.name %> <%= product.price %>
-  	<%#= link_to 'Remove', @product, method: :post %></li>
+  	<%= link_to 'Remove', product, method: :post %></li>
+  	<%= product.inspect %>
 <% end %>
   <b><li>Total <%= price_total %></li></b>
 </ul>

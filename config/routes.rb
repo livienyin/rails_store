@@ -13,7 +13,7 @@ RailsStore::Application.routes.draw do
   # root :to => 'products#index'
 
   post '/products/:id' => 'products#add_to_cart'
-  post '/products/:id' => 'products#remove_from_cart', :as => 'remove_product'
+  post '/products/:id/remove' => 'products#remove_from_cart'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
