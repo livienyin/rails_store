@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @products_in_cart = Product.where(:in_cart => true)
   end
 
-  before_filter :find_product, :except => [:index, :new, :create]
+  before_filter :find_product, :except => [:index, :new, :create, :view_cart]
   def find_product
     @product = Product.find(params[:id])
   end
@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @product = Product.new
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,6 +79,13 @@ class ProductsController < ApplicationController
     end
   end
   
+  def view_cart
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @product }
+    end
+  end
+
   def add_to_cart
     @product.update_attributes({:in_cart => true})
 
@@ -93,7 +99,7 @@ class ProductsController < ApplicationController
      @product.update_attributes({:in_cart => false})
 
      respond_to do |format|
-       format.html { redirect_to products_url, notice: 'Product was successfully removed.' }
+       format.html { redirect_to :back, notice: 'Product was successfully removed.' }
        format.json { head :no_content }
      end
    end
