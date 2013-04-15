@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
 header {
   padding: 6em 0 6em 0;
   margin-bottom: 50px;
@@ -67,6 +66,40 @@ header a:hover {
 
 .review {
   margin-bottom: 10px;
+}
+
+#cart {
+  background-color: #BF540E;
+  text-align: center;
+  margin: auto;
+  padding: 30px;
+  width: 50%;
+  font-size: 1.5em;
+  color: black !important;
+  line-height: 2;
+  font-family: 'Jacques Francois', cursive !important;
+}
+
+#cart a {
+  color: black;
+}
+
+#cart a:hover {
+  background-color: #04BFBF;
+  color: white;
+  padding: 6px;
+}
+
+#your_cart {
+  font-family: 'Jacques Francois', cursive !important;
+  font-size: 2.5em;
+}
+
+#cart_total {
+  margin-top: 20px;
+  background-color: #F2CA80;
+  display: block;
+  font-size: 2em;
 }
 
 #container {

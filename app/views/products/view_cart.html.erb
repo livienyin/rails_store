@@ -1,0 +1,15 @@
+<div id="cart">
+
+
+<span id="your_cart">Doggie Bag:</span><br />
+<% @products_in_cart.each do |product| %>
+  <%= product.name %> <%= number_to_currency(product.price) %>
+  <%= link_to 'Remove', remove_from_cart_url(:id => product.id), method: :post %><br />
+<% end %>
+  <span id="cart_total">Total <%= price_total %></span>
+
+</div>
+
+
+
+
