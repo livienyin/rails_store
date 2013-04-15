@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
 
-  before_filter :load_products_in_cart, :only => [:index, :show]
+  before_filter :load_products_in_cart
   def load_products_in_cart
     @products_in_cart = Product.where(:in_cart => true)
   end

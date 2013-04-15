@@ -1,23 +1,9 @@
 class ReviewsController < ApplicationController
 
-  def index
-    @reviews = Review.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @reviews }
-    end
+  before_filter :load_products_in_cart
+  def load_products_in_cart
+    @products_in_cart = Product.where(:in_cart => true)
   end
-
-  def show
-    @review = Review.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @review }
-    end
-  end
-
 
   def new
     @review = Review.new
@@ -42,7 +28,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @product, notice: 'Review was successfully created.' }
+        format.html { redirect_to @product, notice: 'Review was successfully created!' }
         format.json { render json: @review, status: :created, location: @review }
       else
         @product_id = params[:review][:product_id]

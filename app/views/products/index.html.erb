@@ -1,6 +1,7 @@
-
-<h3><%= link_to 'New Product', new_product_path %></h3>
-<%= render 'sidecar.html' %>
+<!-- <div id="nav">
+  <h3><%#= link_to 'New Product', new_product_path %></h3>
+  <%#= render 'sidecar.html' %>
+</div> -->
 <%#= link_to 'Product Reviews', reviews_path %>
 
 <!-- <table>
@@ -15,13 +16,11 @@
 <% @products.each do |product| %>
 
   <div class="index_product">
-    <img src="<%= product.image_url %>">
-    <%= product.name %><br />
-    <%= number_to_currency product.price %>
-    <%= link_to 'Add to Cart', product, method: :post %>
-    <%= link_to 'Show', product %>
-    <%= link_to 'Edit', edit_product_path(product) %>
-    <%= link_to 'Remove', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to image_tag(product.image_url), product %>
+    <h5><%= link_to product.name, product %> <%= number_to_currency product.price %></h5>
+    <span id="buy_button"><%= link_to 'Add to Cart', product, method: :post %></span><br />
+    <%#= link_to 'Edit', edit_product_path(product) %>
+    <%#= link_to 'Remove', product, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>
 

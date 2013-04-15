@@ -12,20 +12,19 @@
   <% end %>
  
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :Description %>
     <%= f.text_area :body %>
   </div>
   <div class="field">
+    <%= f.label :rating %>
     <%= f.select :rating, (0..5) %>
-    <%#= f.label :rating %>
-    <%#= f.text_field :rating %>
   </div>
 
   <div class="field">
     <% if @product_id %>
       <input type="hidden" name="review[product_id]" value="<%= @product_id %>"/>
       <%= f.label :product_id %><br />
-   <% end %>
+    <% end %>
 
   </div>
   <div class="actions">
